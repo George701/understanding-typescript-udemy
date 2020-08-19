@@ -1,0 +1,11 @@
+{
+  "name": "understanding-typescript-udemy",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/George701/understanding-typescript-udemy.git",
+  "author": "Georgii Chernikov <georgii.chernikov@valamis.com>",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^3.9.7"
+  }
+}
