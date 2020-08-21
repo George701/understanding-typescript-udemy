@@ -1,0 +1,13 @@
+{
+  "name": "course-template",
+  "version": "1.0.0",
+  "main": "app.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "lite-server",
+    "build": "tsc app.ts"
+  },
+  "devDependencies": {
+    "lite-server": "^2.5.4"
+  }
+}
