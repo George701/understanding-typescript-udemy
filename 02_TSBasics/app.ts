@@ -1,13 +1,21 @@
+enum Permission {
+  ADMIN = 'ADMIN',
+  READ_ONLY = 100,
+  AUTHOR = 'AUTHOR',
+}
+
 const person: {
   name: string,
   age: number,
   hobbies: string[],
-  role: [number, string]
+  role: [number, string],
+  permission: Permission,
 } = {
   name: 'George',
   age: 24,
   hobbies: ['Sports, Cooking'],
   role: [2, 'author'],
+  permission: Permission.ADMIN
 };
 
 // person.role.push('admin'); // Tupes allows to push elements in them :(
@@ -24,3 +32,5 @@ console.log(person.name);
 for (const hobby of person.hobbies) {
   console.log(hobby.toUpperCase());
 }
+
+if (person.permission === Permission.ADMIN) console.log('You are admin');
