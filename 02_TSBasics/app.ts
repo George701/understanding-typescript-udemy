@@ -1,36 +1,17 @@
-enum Permission {
-  ADMIN = 'ADMIN',
-  READ_ONLY = 100,
-  AUTHOR = 'AUTHOR',
-}
+const combine = (
+  input1: number | string,
+  input2: number | string
+): number | string => {
+  if (
+    typeof input1 === 'number' &&
+    typeof input2 === 'number'
+  ) return input1 + input2;
 
-const person: {
-  name: string,
-  age: number,
-  hobbies: string[],
-  role: [number, string],
-  permission: Permission,
-} = {
-  name: 'George',
-  age: 24,
-  hobbies: ['Sports, Cooking'],
-  role: [2, 'author'],
-  permission: Permission.ADMIN
+  return input1.toString() + input2.toString();
 };
 
-// person.role.push('admin'); // Tupes allows to push elements in them :(
-// person.role[1] = 10;
-// person.role = [0, 'admin', 'user'];
+const combineAges = combine(30, 26);
+console.log(combineAges);
 
-let favoriteActivities: string[];
-// let favoriteActivities: any[];
-// favoriteActivities = ['Sports', 1]
-favoriteActivities = ['Sports']
-
-console.log(person.name);
-
-for (const hobby of person.hobbies) {
-  console.log(hobby.toUpperCase());
-}
-
-if (person.permission === Permission.ADMIN) console.log('You are admin');
+const combineNames = combine('Max', 'Nika');
+console.log(combineNames);
