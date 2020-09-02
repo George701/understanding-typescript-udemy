@@ -1,20 +1,12 @@
-const add = (n1: number, n2: number) => n1 + n2;
+let userInput: unknown; // number | string -> will be better
+let userName: string;
 
-const printResult = (num: number): void => console.log('The result is ' + num);
+userInput = 2002;
+userInput = 'Jari';
+if (typeof userInput === 'string') userName = userInput;
 
-printResult(add(7,6));
+const generateError = (message: string, code: number): never => {
+  throw { message: message, errorCode: code };
+}
 
-let combineValues: (x: number, y: number) => number;
-
-combineValues = add;
-
-console.log(combineValues(8, 8));
-
-const addAndHandle = (n1: number, n2: number, cb: (num: number) => void) => {
-  const result = n1 + n2;
-  cb(result);
-};
-
-addAndHandle(10, 15, (result) => {
-  console.log(result)
-});
+generateError('An error occurred!', 500);
