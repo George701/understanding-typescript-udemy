@@ -1,0 +1,1 @@
+console.log('This file is only for tests');
