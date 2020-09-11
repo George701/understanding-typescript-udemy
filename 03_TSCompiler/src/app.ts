@@ -1,10 +1,13 @@
 
 let num: number;
 num = 5;
-console.log('Code goes here!');
 
-const btn = document.querySelector('button')!;
+const btn = document.querySelector('button');
 
-btn.addEventListener('click', () => {
-  console.log('Clicked!');
-})
+const clickHandler = (message: string) => {
+  console.log(`Clicked! ${message}`);
+}
+
+if (!!btn) {
+  btn.addEventListener('click', clickHandler.bind(null, 'Message'));
+}
