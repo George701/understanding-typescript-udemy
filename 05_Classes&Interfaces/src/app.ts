@@ -19,10 +19,35 @@ class Department {
     console.log(this.employees);
   }
 };
+
+class ITDepartment extends Department{
+  // constructor of Department is automatically used
+  constructor(id: string, public admin: string[]){
+    super(id, 'IT'); // super always go first
+  }
+}
+
+class AccountingDepartment extends Department{
+  // constructor of Department is automatically used
+  constructor(id: string, public reports: string[]){
+    super(id, 'Accounting'); // super always go first
+  };
+
+  addReports = (text: string) => {
+    this.reports.push(text);
+  };
+
+  printReports = () => {
+    console.log(this.reports);
+  }
+}
+
+const learningDp = new ITDepartment('01', ['Max']);
+
 const accounting = new Department('01', 'Accounting');
 
-accounting.addEmployee('Karen Brown');
-accounting.addEmployee('John Doe');
+learningDp.addEmployee('Karen Brown');
+learningDp.addEmployee('John Doe');
 
-accounting.describe();
-accounting.printEmployeeInfo();
+learningDp.describe();
+learningDp.printEmployeeInfo();
