@@ -36,6 +36,7 @@ class ITDepartment extends Department{
 
 class AccountingDepartment extends Department{
   private lastReport: string;
+  private static instance: AccountingDepartment;
 
   get mostRecentReport(){
     if (!!this.lastReport) return this.lastReport;
@@ -47,11 +48,19 @@ class AccountingDepartment extends Department{
 
     this.addReports(value);
   }
-  // constructor of Department is automatically used
-  constructor(id: string, public reports: string[]){
+  // constructor of singleton
+  private constructor(id: string, public reports: string[]){
     super(id, 'Accounting'); // super always go first
     this.lastReport = reports[0];
   };
+
+  // singleton can be created once only. There must be no possibility to make another class using same constructor.
+  static getInstance(id: string) {
+    // It makes sure that class won't be create more than one time.
+    if (AccountingDepartment.instance) return this.instance;
+    this.instance = new AccountingDepartment(id, []);
+    return this.instance
+  }
 
   describe = () => {
     console.log('Accounting Department ID - ', this.id);
@@ -80,7 +89,8 @@ console.log(Department.fiscalYear);
 
 const learningDp = new ITDepartment('01', ['Max']);
 
-const accounting = new AccountingDepartment('01', []);
+// const accounting = new AccountingDepartment('01', []);
+const accounting = AccountingDepartment.getInstance('001');
 
 accounting.mostRecentReport = 'Lol';
 accounting.describe();
