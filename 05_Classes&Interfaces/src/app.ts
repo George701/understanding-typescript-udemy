@@ -1,9 +1,9 @@
-class Department {
+abstract class Department {
   // private name: string;
   static fiscalYear = 2020;
   protected employees: string[] = [];
   
-  constructor(private readonly id: string, public name: string) {
+  constructor(protected readonly id: string, public name: string) {
     // this.name = n;
   };
 
@@ -11,9 +11,7 @@ class Department {
     return {name: name}
   };
 
-  describe(this: Department){
-    console.log(`Department ${this.id}: ${this.name}`);
-  };
+  abstract describe(this: Department): void;
 
   addEmployee = (employee: string) => {
     this.employees.push(employee);
@@ -29,6 +27,10 @@ class ITDepartment extends Department{
   // constructor of Department is automatically used
   constructor(id: string, public admin: string[]){
     super(id, 'IT'); // super always go first
+  };
+
+  describe = () => {
+    console.log('IT Department ID: ', this.id);
   }
 }
 
@@ -49,6 +51,10 @@ class AccountingDepartment extends Department{
   constructor(id: string, public reports: string[]){
     super(id, 'Accounting'); // super always go first
     this.lastReport = reports[0];
+  };
+
+  describe = () => {
+    console.log('Accounting Department ID - ', this.id);
   };
 
   addEmployee = (name: string) => {
@@ -77,10 +83,11 @@ const learningDp = new ITDepartment('01', ['Max']);
 const accounting = new AccountingDepartment('01', []);
 
 accounting.mostRecentReport = 'Lol';
-console.log(accounting.mostRecentReport);
+accounting.describe();
+// console.log(accounting.mostRecentReport);
 
-learningDp.addEmployee('Karen Brown');
-learningDp.addEmployee('John Doe');
+// learningDp.addEmployee('Karen Brown');
+// learningDp.addEmployee('John Doe');
 
-learningDp.describe();
-learningDp.printEmployeeInfo();
+// learningDp.describe();
+// learningDp.printEmployeeInfo();
