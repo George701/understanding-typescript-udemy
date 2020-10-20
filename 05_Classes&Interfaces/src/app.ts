@@ -1,16 +1,29 @@
-interface Person {
+// interfaces CAN be replaced by custom types
+// BUT they are not the same thing
+// Interfaces are specifically bounded with objects
+// while custom types are flexible 
+interface Greeting {
   name: string;
-  age: number;
 
   greet: (s: string) => void;
 };
 
-let user1: Person;
+// It is possible to inherit or extend only one thing
+// While class may implements MULTIPLE interfaces
+class Person implements Greeting {
+  name: string;
+  age = 30;
+  constructor(n: string){
+    this.name = n;
+  }
 
-user1 = {
-  name: 'Max',
-  age: 34,
-  greet(p: string){
-    console.log(p + ' ' + name);
+  greet(phrase: string) {
+    console.log('Hello ' + name + '! ' + phrase);
   }
 }
+
+let user1: Greeting;
+
+user1 = new Person('George');
+
+user1.greet('I am developer');
