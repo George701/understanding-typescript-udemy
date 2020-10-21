@@ -2,9 +2,11 @@
 // BUT they are not the same thing
 // Interfaces are specifically bounded with objects
 // while custom types are flexible 
-interface Greeting {
-  name: string;
+interface Name {
+  readonly name: string;
+};
 
+interface Greeting extends Name {
   greet: (s: string) => void;
 };
 
