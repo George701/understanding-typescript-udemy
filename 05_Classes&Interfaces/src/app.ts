@@ -12,7 +12,8 @@ add = (n1: number, n2: number) => n1+n2;
 // Interfaces are specifically bounded with objects
 // while custom types are flexible 
 interface Name {
-  readonly name: string;
+  readonly name?: string;
+  outputName?: string;
 };
 
 interface Greeting extends Name {
@@ -22,10 +23,10 @@ interface Greeting extends Name {
 // It is possible to inherit or extend only one thing
 // While class may implements MULTIPLE interfaces
 class Person implements Greeting {
-  name: string;
+  name?: string;
   age = 30;
-  constructor(n: string){
-    this.name = n;
+  constructor(n?: string){
+    if (n) { this.name = n; }
   }
 
   greet(phrase: string) {
@@ -35,6 +36,7 @@ class Person implements Greeting {
 
 let user1: Greeting;
 
-user1 = new Person('George');
+user1 = new Person();
+// user1 = new Person('George');
 
 user1.greet('I am developer');
