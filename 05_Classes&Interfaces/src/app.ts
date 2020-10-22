@@ -1,3 +1,12 @@
+// type AddFn = (a: number, b: number) => number;
+interface AddFn {
+  (a: number, b: number): number;
+};
+
+let add: AddFn;
+
+add = (n1: number, n2: number) => n1+n2;
+
 // interfaces CAN be replaced by custom types
 // BUT they are not the same thing
 // Interfaces are specifically bounded with objects
