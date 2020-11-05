@@ -54,6 +54,11 @@ const fetchUserData = {
 // OR
 console.log(fetchUserData?.job?.title);
 
+const userInput = null;
+// Nullish Coalescing
+// 'if data is null or undefined'
+const storedData = userInput ?? 'DEFAULT';
+
 type UnknownEmployee = Employee | Admin;
 
 function printEmployeeInformation(emp: UnknownEmployee){
