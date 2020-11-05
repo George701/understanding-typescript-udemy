@@ -40,6 +40,20 @@ const resultOne = add(1,5);
 const resultTwo = add('Walter', ' White');
 resultTwo.split(' ');
 
+// Optional chaining
+const fetchUserData = {
+  id: 'u1',
+  name: 'Max',
+  job: {
+    title: 'CEO',
+    description: 'my own company'
+  }
+};
+
+// console.log(fetchUserData.job && fetchUserData.job.title);
+// OR
+console.log(fetchUserData?.job?.title);
+
 type UnknownEmployee = Employee | Admin;
 
 function printEmployeeInformation(emp: UnknownEmployee){
