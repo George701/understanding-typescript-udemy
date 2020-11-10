@@ -9,7 +9,7 @@ names[0].split('');
 //   }, 2000)
 // });
 
-function merge<T, U>(objA: T, objB: U) {
+function merge<T extends object, U extends object>(objA: T, objB: U) {
   return {
     ...objA,
     ...objB,
@@ -20,3 +20,5 @@ const merged = merge({name: 'Max', hobbies: ['sports']}, {age: 30})
 console.log(merged);
 console.log(merged.name);
 console.log(merged.age);
+
+
