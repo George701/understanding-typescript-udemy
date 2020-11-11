@@ -21,4 +21,18 @@ console.log(merged);
 console.log(merged.name);
 console.log(merged.age);
 
+interface Lengthly {
+  length: number;
+}
+
+function countAndDescribe<T extends Lengthly>(element: T): [T, string] {
+  let descriptionText = 'Got no value';
+  if (element.length === 1) {
+    descriptionText = 'Got 1 element';
+  } else if (element.length > 0) {
+    descriptionText = 'Got ' + element.length + ' elements';
+  }
+  return [element, descriptionText]
+}
+
 
