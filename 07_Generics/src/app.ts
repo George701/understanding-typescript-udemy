@@ -74,3 +74,25 @@ console.log(textStorage.getData());
 // objStorage.removeItem(objManu);
 // console.log(objStorage.getData());
 
+interface CourseGoal {
+  title: string;
+  description: string;
+  completeUntil: Date;
+}
+
+function createCourseGoal(
+  title: string,
+  description: string,
+  date: Date
+): CourseGoal {
+  // Partials sets all properties of type or interface to optional
+  let courseGoal: Partial<CourseGoal> = {};
+  courseGoal.title = title;
+  courseGoal.description = description;
+  courseGoal.completeUntil = date;
+  return courseGoal as CourseGoal;
+ };
+
+ // Lock array
+ const friends: Readonly<string[]> = ['Max', 'Anna'];
+//  friends.push('Manu') // Error
