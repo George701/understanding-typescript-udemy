@@ -1,4 +1,5 @@
 function Logger(logTarget: string){
+  console.log('Logger factory');
   return function(constructor: Function) {
     console.log('Logging: ', logTarget);
     console.log(constructor);
@@ -6,7 +7,9 @@ function Logger(logTarget: string){
 }
 
 function WithTemplate(template: string, hookId: string){
+  console.log('Template factory');
   return function(constructor: any) {
+    console.log('Rendering template')
     const hookEl = document.getElementById(hookId);
     const p = new constructor();
     if (hookEl) {
@@ -16,7 +19,7 @@ function WithTemplate(template: string, hookId: string){
   }
 }
 
-// @Logger('Person')
+@Logger('Person')
 @WithTemplate('<h1>Person<h1>', 'root')
 class Person {
   name = 'Max';
