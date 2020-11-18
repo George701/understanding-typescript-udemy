@@ -34,16 +34,50 @@ console.log(pers);
 
 // ---
 
-function Log(target: any, propertyName: string | Symbol) {
+function LogProp(target: any, propertyName: string | Symbol) {
   console.log('-- Property decorator --');
   console.log(target, propertyName);
+};
+
+function LogAccessor(
+  target: any,
+  name: string | Symbol,
+  descriptor: PropertyDescriptor
+) {
+  console.log('-- Accessor decorator --');
+  console.log(target);
+  console.log(name);
+  console.log(descriptor);
+};
+
+function LogMethod(
+  target: any,
+  name: string | Symbol,
+  descriptor: PropertyDescriptor
+) {
+  console.log('-- Method decorator --');
+  console.log(target);
+  console.log(name);
+  console.log(descriptor);
+}
+
+function LogParam(
+  target: any,
+  name: string | Symbol,
+  position: number
+) {
+  console.log('-- Parameter decorator --');
+  console.log(target);
+  console.log(name);
+  console.log(position);
 }
 
 class Product {
-  @Log
+  @LogProp
   title: string;
   private _price: number;
 
+  @LogAccessor
   set price(val: number){
     if(val > 0) {
       this._price = val;
@@ -57,7 +91,8 @@ class Product {
     this._price = p;
   };
 
-  getPriceWithTax(tax: number){
+  @LogMethod
+  getPriceWithTax(@LogParam tax: number){
     return this._price * (this._price / 100 * tax);
   }
 }
