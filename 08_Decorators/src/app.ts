@@ -8,13 +8,17 @@ function Logger(logTarget: string){
 
 function WithTemplate(template: string, hookId: string){
   console.log('Template factory');
-  return function(constructor: any) {
-    console.log('Rendering template')
-    const hookEl = document.getElementById(hookId);
-    const p = new constructor();
-    if (hookEl) {
-      hookEl.innerHTML = template;
-      hookEl.querySelector('h1')!.textContent = p.name
+  return function<T extends {new(...args: any[]): { name: string }}>(originalConstructor: T) {
+    return class extends originalConstructor {
+      constructor(..._: any[]) {
+        super();
+        console.log('Rendering template')
+        const hookEl = document.getElementById(hookId);
+        if (hookEl) {
+          hookEl.innerHTML = template;
+          hookEl.querySelector('h1')!.textContent = this.name
+        }
+      }
     }
   }
 }
@@ -96,3 +100,6 @@ class Product {
     return this._price * (this._price / 100 * tax);
   }
 }
+
+const p1 = new Product('Book', 29.99);
+const p2 = new Product('Magazine', 19.99);
